@@ -1,0 +1,157 @@
+{
+  "api": {
+    "api7ba2216d": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "membershipwebsitee5837fb1"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "membershipwebsite": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "membershipwebsite": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [
+            "REQUIRES_NUMBERS"
+          ],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "membershipwebsitee5837fb1": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "membershipwebsite"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_membershipwebsite9298e224_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsite9298e224"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsite9298e224_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsite9298e224"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsite9298e224_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsite9298e224"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsite9e231d27_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsite9e231d27"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsite9e231d27_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsite9e231d27"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsite9e231d27_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsite9e231d27"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsitee5837fb1_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsitee5837fb1"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsitee5837fb1_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsitee5837fb1"
+        }
+      ]
+    },
+    "AMPLIFY_function_membershipwebsitee5837fb1_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "membershipwebsitee5837fb1"
+        }
+      ]
+    }
+  }
+}
